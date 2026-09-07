@@ -37,7 +37,7 @@ class Linear(Module):
 
         if self.use_bias:
             self._parameters["bias"] = np.zeros(out_features, dtype=np.float64)
-            self._grads['bias'] = np.zeros_like(self._parameters['bias'])
+            self._grads["bias"] = np.zeros_like(self._parameters["bias"])
 
     @property
     def weight(self) -> np.ndarray:
@@ -47,6 +47,8 @@ class Linear(Module):
     def bias(self) -> Optional[np.ndarray]:
         if not self.use_bias:
             return None
+
+        return self._parameters["bias"]
 
     def forward(self, x: np.ndarray) -> np.ndarray:
         if not isinstance(x, np.ndarray):
@@ -73,7 +75,7 @@ class Linear(Module):
 
         return output
 
-    def backward(self, grad_out: np,ndarray) -> np.ndarray:
+    def backward(self, grad_out: np.ndarray) -> np.ndarray:
         if self._cache_input is None:
             raise RuntimeError(
                 "Cannot call backward before forward. "

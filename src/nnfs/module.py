@@ -15,7 +15,7 @@ class Module(ABC):
         pass
 
     @abstractmethod
-    def backwards(self, grad_out: Any) -> Any:
+    def backward(self, grad_out: Any) -> Any:
         pass
 
     def __call__(self, x: Any) -> Any:
